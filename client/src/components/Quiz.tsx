@@ -36,6 +36,15 @@ const Quiz = () => {
     }
   };
 
+  const handleNextQuestion = () => {
+    const nextQuestionIndex = currentQuestionIndex + 1;
+    if (nextQuestionIndex < questions.length) {
+      setCurrentQuestionIndex(nextQuestionIndex);
+    } else {
+      setQuizCompleted(true);
+    }
+  };
+
   const handleStartQuiz = async () => {
     await getRandomQuestions();
     setQuizStarted(true);
@@ -100,7 +109,7 @@ const Quiz = () => {
       <button 
         className="btn btn-primary mt-3" 
         data-testid="next-button"
-        onClick={() => handleAnswerClick(false)}
+        onClick={handleNextQuestion}
       >
         Next Question
       </button>
