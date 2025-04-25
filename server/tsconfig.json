@@ -6,9 +6,15 @@
     "rootDir": "src" /* Specify the root folder within your source files. */,
 
     /* Emit */
-    "outDir": "dist" /* Specify an output folder for all emitted files. */
+    "outDir": "dist" /* Specify an output folder for all emitted files. */,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "ESNext"
     // "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */
   },
-  "include": ["src", "**/*.json"],
+  "include": ["src/**/*"],
   "typeRoots": ["./node_modules/@types", "./src/types"]
 }
