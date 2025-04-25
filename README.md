@@ -17,6 +17,7 @@ A modern, interactive quiz application built with React, TypeScript, and Express
   - TypeScript
   - Vite
   - Bootstrap
+  - ESLint
 - Backend:
   - Express
   - MongoDB
@@ -75,26 +76,32 @@ npm run test
 npm run test:component
 ```
 
-## Project Walkthrough
-
-### Application Structure
+## Project Structure
 
 ```
 Pop-tech-quiz/
 ├── client/                 # Frontend React application
 │   ├── src/
+│   │   ├── assets/        # Static assets
 │   │   ├── components/    # React components
 │   │   ├── models/        # TypeScript interfaces
 │   │   ├── services/      # API services
-│   │   └── App.tsx        # Main application component
-│   └── cypress/           # Cypress tests
+│   │   ├── App.tsx        # Main application component
+│   │   └── main.tsx       # Application entry point
+│   ├── public/            # Public static files
+│   ├── .eslintrc.cjs      # ESLint configuration
+│   ├── tsconfig.json      # TypeScript configuration
+│   └── vite.config.ts     # Vite configuration
 ├── server/                 # Backend Express application
 │   ├── src/
 │   │   ├── controllers/   # Route controllers
 │   │   ├── models/        # Mongoose models
 │   │   └── routes/        # API routes
-│   └── seeds/             # Database seed data
-└── cypress.config.mjs      # Cypress configuration
+│   ├── dist/              # Compiled TypeScript output
+│   └── tsconfig.json      # TypeScript configuration
+├── cypress/               # Cypress test files
+├── cypress.config.ts      # Cypress configuration
+└── package.json          # Root package.json for shared scripts
 ```
 
 ### Key Features Implementation
@@ -115,17 +122,36 @@ Pop-tech-quiz/
    - Component tests for isolated functionality
    - API mocking for consistent test data
 
-### Video Walkthrough
+## Development
 
-[Link to your video walkthrough]
+### Code Quality
 
-The video walkthrough demonstrates:
-- Application setup and installation
-- Running the development servers
-- Taking a quiz
-- Viewing test results
-- Code structure and organization
-- Testing approach and implementation
+The project uses ESLint for code quality and consistency:
+```bash
+# Run ESLint
+npm run lint
+
+# Fix ESLint issues
+npm run lint:fix
+```
+
+### TypeScript Configuration
+
+The project uses TypeScript for type safety:
+- Client: `client/tsconfig.json` and `client/tsconfig.node.json`
+- Server: `server/tsconfig.json`
+
+### Build Process
+
+```bash
+# Build the client
+cd client
+npm run build
+
+# Build the server
+cd server
+npm run build
+```
 
 ## Contributing
 
