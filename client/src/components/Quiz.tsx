@@ -80,7 +80,7 @@ const Quiz = () => {
   if (questions.length === 0) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100" data-testid="quiz-container">
-        <div className="spinner-border text-primary" role="status">
+        <div className="spinner-border text-primary" role="status" data-testid="loading">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>

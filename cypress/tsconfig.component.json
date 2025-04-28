@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
@@ -13,8 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "allowJs": true,
-    "checkJs": false,
-    "jsxImportSource": "react"
+    "checkJs": false
   },
-  "include": ["**/*.ts", "**/*.tsx", "support/**/*.ts", "support/**/*.tsx"]
+  "include": ["component/**/*.ts", "component/**/*.tsx", "support/component.ts"]
 } 
