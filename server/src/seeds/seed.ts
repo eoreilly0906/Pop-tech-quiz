@@ -8,8 +8,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Look for the file in the source directory instead of the dist directory
 const questionData = JSON.parse(
-  readFileSync(join(__dirname, './pythonQuestions.json'), 'utf-8')
+  readFileSync(join(__dirname, '../../src/seeds/pythonQuestions.json'), 'utf-8')
 );
 
 try {

@@ -1,20 +1,20 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "composite": true /* Enable project references. */,
-    /* Modules */
-    "rootDir": "src" /* Specify the root folder within your source files. */,
-
-    /* Emit */
-    "outDir": "dist" /* Specify an output folder for all emitted files. */,
+    "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "allowJs": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
     "resolveJsonModule": true,
-    "target": "ESNext"
-    // "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */
+    "declaration": true,
+    "sourceMap": true
   },
   "include": ["src/**/*"],
-  "typeRoots": ["./node_modules/@types", "./src/types"]
+  "exclude": ["node_modules", "dist"]
 }

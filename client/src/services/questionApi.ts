@@ -1,4 +1,4 @@
-import type { Question } from '../models/Question.js';
+import type { Question } from '../models/Question';
 
 export const getQuestions = async (): Promise<Question[]> => {
   try {
