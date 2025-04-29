@@ -14,7 +14,8 @@
     "build": "cd server && npm run build",
     "seed": "cd server && npm run seed",
     "render-build": "npm install && npm run build",
-    "test": "concurrently \"npm run start:dev\" \"wait-on tcp:3001 && cypress run\" --kill-others --success first",
+    "test": "concurrently \"npm run start:dev\" \"wait-on tcp:3001 && npm run test:all\" --kill-others --success first",
+    "test:all": "concurrently \"npm run test:component\" \"npm run test:e2e\"",
     "test:open": "cypress open",
     "test:component": "cypress run --component",
     "test:e2e": "cypress run --e2e"
