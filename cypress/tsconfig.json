@@ -16,5 +16,10 @@
     "checkJs": false,
     "jsxImportSource": "react"
   },
-  "include": ["**/*.ts", "**/*.tsx", "support/**/*.ts", "support/**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "support/**/*.ts", "support/**/*.tsx"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 } 

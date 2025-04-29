@@ -1,4 +1,4 @@
-import { useState, } from 'react';
+import { useState, useEffect } from 'react';
 import type { Question } from '../models/Question';
 import { getQuestions } from '../services/questionApi';
 
@@ -8,9 +8,12 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
   const getRandomQuestions = async () => {
     try {
+      setIsLoading(true);
       const questions = await getQuestions();
 
       if (!questions) {
@@ -20,23 +23,20 @@ const Quiz = () => {
       setQuestions(questions);
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleAnswerClick = (isCorrect: boolean) => {
+  const handleAnswerClick = (isCorrect: boolean, index: number) => {
+    setSelectedAnswer(index);
     if (isCorrect) {
       setScore(score + 1);
-    }
-
-    const nextQuestionIndex = currentQuestionIndex + 1;
-    if (nextQuestionIndex < questions.length) {
-      setCurrentQuestionIndex(nextQuestionIndex);
-    } else {
-      setQuizCompleted(true);
     }
   };
 
   const handleNextQuestion = () => {
+    setSelectedAnswer(null);
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
@@ -46,11 +46,12 @@ const Quiz = () => {
   };
 
   const handleStartQuiz = async () => {
-    await getRandomQuestions();
     setQuizStarted(true);
     setQuizCompleted(false);
     setScore(0);
     setCurrentQuestionIndex(0);
+    setSelectedAnswer(null);
+    await getRandomQuestions();
   };
 
   if (!quizStarted) {
@@ -59,6 +60,16 @@ const Quiz = () => {
         <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
           Start Quiz
         </button>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100" data-testid="quiz-container">
+        <div className="spinner-border text-primary" role="status" data-testid="loading">
+          <span className="visually-hidden">Loading...</span>
+        </div>
       </div>
     );
   }
@@ -96,9 +107,10 @@ const Quiz = () => {
       {currentQuestion.answers.map((answer, index) => (
         <div key={index} className="d-flex align-items-center mb-2">
           <button 
-            className="btn btn-primary" 
+            className={`btn ${selectedAnswer === index ? 'btn-success' : 'btn-primary'}`}
             data-testid="answer-option"
-            onClick={() => handleAnswerClick(answer.isCorrect)}
+            onClick={() => handleAnswerClick(answer.isCorrect, index)}
+            disabled={selectedAnswer !== null}
           >
             {index + 1}
           </button>
@@ -106,13 +118,15 @@ const Quiz = () => {
         </div>
       ))}
       </div>
-      <button 
-        className="btn btn-primary mt-3" 
-        data-testid="next-button"
-        onClick={handleNextQuestion}
-      >
-        Next Question
-      </button>
+      {selectedAnswer !== null && (
+        <button 
+          className="btn btn-primary mt-3" 
+          data-testid="next-button"
+          onClick={handleNextQuestion}
+        >
+          Next Question
+        </button>
+      )}
     </div>
   );
 };
