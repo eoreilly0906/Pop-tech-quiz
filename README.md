@@ -2,6 +2,11 @@
 
 A modern, interactive quiz application built with React, TypeScript, and Express. Test your knowledge with a variety of tech-related questions!
 
+## Demo
+Watch the application in action: [Demo Video](https://drive.google.com/file/d/1Evo8H9y3YtaSNrkQPek_7lHL93NAig6o/view?usp=sharing)
+
+Google Drive video: 
+
 ## Features
 
 - Interactive quiz interface
